@@ -93,35 +93,6 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./api/index.js":
-/*!**********************!*\
-  !*** ./api/index.js ***!
-  \**********************/
-/*! exports provided: postsAPI */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postsAPI", function() { return postsAPI; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-const instance = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/'
-});
-const postsAPI = {
-  list() {
-    return instance.get(`todos`);
-  },
-
-  getOne(id) {
-    return instance.post(`todos/${id}`);
-  }
-
-};
-
-/***/ }),
-
 /***/ "./lib/with-redux-store.js":
 /*!*********************************!*\
   !*** ./lib/with-redux-store.js ***!
@@ -147,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../store */ "./store.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../store */ "./store/index.js");
 
 
 
@@ -797,10 +768,10 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_0___default.a {
 
 /***/ }),
 
-/***/ "./store.js":
-/*!******************!*\
-  !*** ./store.js ***!
-  \******************/
+/***/ "./store/index.js":
+/*!************************!*\
+  !*** ./store/index.js ***!
+  \************************/
 /*! exports provided: initializeStore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -813,15 +784,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux-thunk */ "redux-thunk");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(redux_thunk__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _test_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./test-reducer */ "./test-reducer.js");
+/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reducers */ "./store/reducers/index.js");
 
 
 
 
-const reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  testPage: _test_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
-});
-const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(reducers, {}, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2___default.a)));
+const store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_3__["default"], {}, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_1__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_2___default.a)));
 const isServer = true;
 
 if (!isServer) {
@@ -835,17 +803,35 @@ function initializeStore() {
 
 /***/ }),
 
-/***/ "./test-reducer.js":
-/*!*************************!*\
-  !*** ./test-reducer.js ***!
-  \*************************/
-/*! exports provided: default, setPosts, fetchPosts */
+/***/ "./store/reducers/index.js":
+/*!*********************************!*\
+  !*** ./store/reducers/index.js ***!
+  \*********************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPosts", function() { return setPosts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "redux");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _test_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test-reducer */ "./store/reducers/test-reducer.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  testPage: _test_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+}));
+
+/***/ }),
+
+/***/ "./store/reducers/test-reducer.js":
+/*!****************************************!*\
+  !*** ./store/reducers/test-reducer.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
@@ -859,10 +845,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./api */ "./api/index.js");
-
+/* harmony import */ var _types_test__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../types/test */ "./store/types/test.js");
 
 
 
@@ -879,29 +862,31 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 const initialState = {
   posts: null
 };
-const SET_POSTS = 'SET_POSTS';
 /* harmony default export */ __webpack_exports__["default"] = ((state = initialState, action) => {
   switch (action.type) {
-    case SET_POSTS:
-      return _babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_7___default()({}, _objectSpread({}, state, {
+    case _types_test__WEBPACK_IMPORTED_MODULE_7__["SET_POSTS"]:
+      return _objectSpread({}, state, {
         posts: action.posts
-      }));
+      });
 
     default:
       return state;
   }
 });
-const setPosts = posts => ({
-  type: SET_POSTS,
-  posts
-});
-const fetchPosts = () => {
-  return async dispatch => {
-    const response = await _api__WEBPACK_IMPORTED_MODULE_8__["postsAPI"].list(); //console.log('res', response.data);
 
-    dispatch(setPosts(response.data));
-  };
-};
+/***/ }),
+
+/***/ "./store/types/test.js":
+/*!*****************************!*\
+  !*** ./store/types/test.js ***!
+  \*****************************/
+/*! exports provided: SET_POSTS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_POSTS", function() { return SET_POSTS; });
+const SET_POSTS = 'SET_POSTS';
 
 /***/ }),
 
@@ -914,17 +899,6 @@ const fetchPosts = () => {
 
 module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
 
-
-/***/ }),
-
-/***/ "axios":
-/*!************************!*\
-  !*** external "axios" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("axios");
 
 /***/ }),
 

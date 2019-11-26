@@ -1,17 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { postsAPI } from '../api';
 
-import Posts from '../components/Posts/Posts';
-
-import { fetchPosts } from '../test-reducer';
+import { fetchPosts } from '../store/actions/test';
 
 class Index extends React.Component {
 
 	static async getInitialProps({ reduxStore }) {
 	 await reduxStore.dispatch(fetchPosts());
 	 	const posts = reduxStore.getState().testPage.posts;
-	  console.log('STATE!!!', posts);
+	  //console.log('STATE!!!', posts);
 
 	  return { posts };
 	}
@@ -33,5 +30,12 @@ class Index extends React.Component {
 
 };
 
+const mapDispatchToProps = dispatch => {
+  return {}
+}
 
-export default Index;
+const mapStateToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

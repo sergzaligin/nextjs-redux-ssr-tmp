@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const SET_POSTS = 'SET_POSTS';","map":{"version":3,"sources":["/home/sergey/Documents/NextJS/examples/with-redux-thunk-app/store/types/test.js"],"names":["SET_POSTS"],"mappings":"AAAA,OAAO,MAAMA,SAAS,GAAG,WAAlB","sourcesContent":["export const SET_POSTS = 'SET_POSTS';"]},"metadata":{},"sourceType":"module"}
